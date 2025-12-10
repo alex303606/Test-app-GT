@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     paddingHorizontal: 16,
+    paddingBottom: 72,
   },
   buttonText: {
     color: 'white',
