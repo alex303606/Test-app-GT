@@ -10,7 +10,7 @@ import React, { useCallback, useState } from 'react';
 export const AppContent: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  //const [list, setList] = useState<string[]>([]);
+  const [list, setList] = useState<string[]>([]);
 
   const onToggleModalHandler = useCallback(() => {
     setModalVisible(!modalVisible);

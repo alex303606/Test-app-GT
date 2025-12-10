@@ -63,7 +63,7 @@ export const SectionListComponent: React.FC<Props> = () => {
       contentContainerStyle={styles.sectionList}
       showsVerticalScrollIndicator={false}
       scrollEnabled={true}
-      sections={DATA}
+      sections={[]}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
       renderSectionHeader={renderSectionHeader}
