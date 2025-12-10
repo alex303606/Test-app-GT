@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 
 type Props = {
   modalVisible: boolean;
   toggleModal: () => void;
+  onPressAddValue: () => void;
   inputValue: string;
   setInputValue: (value: string) => void;
 };
@@ -13,10 +14,17 @@ export const ModalScreen: React.FC<Props> = ({
   toggleModal,
   inputValue,
   setInputValue,
+  onPressAddValue,
 }) => {
   const toggleModalHandler = useCallback(() => {
     toggleModal();
   }, [toggleModal]);
+
+  useEffect(() => {
+    if (modalVisible) {
+      setInputValue('');
+    }
+  }, [modalVisible, setInputValue]);
 
   return (
     <Modal
@@ -29,31 +37,36 @@ export const ModalScreen: React.FC<Props> = ({
         style={styles.modalContainer}
         activeOpacity={1}
         onPress={toggleModalHandler}
-      >
-        <View style={styles.modalContent}>
-          <Text style={styles.addText}>Добавить значение</Text>
-          <TextInput
-            placeholder={'Например: Cat'}
-            placeholderTextColor={'rgba(41, 45, 58, 0.32)'}
-            style={styles.input}
-            value={inputValue}
-            onChangeText={setInputValue}
-          />
-          <Pressable
-            onPress={() => null}
-            style={({ pressed }) => [
-              styles.button,
-              pressed
-                ? {
-                    backgroundColor: 'grey',
-                  }
-                : null,
-            ]}
-          >
-            <Text style={styles.buttonText}>Добавить значение</Text>
-          </Pressable>
-        </View>
-      </TouchableOpacity>
+      />
+      <View style={styles.modalContent}>
+        <Text style={styles.addText}>Добавить значение</Text>
+        <TextInput
+          placeholder={'Например: Cat'}
+          placeholderTextColor={'rgba(41, 45, 58, 0.32)'}
+          style={styles.input}
+          value={inputValue}
+          onChangeText={setInputValue}
+        />
+        <Pressable
+          disabled={!inputValue}
+          onPress={onPressAddValue}
+          style={({ pressed }) => [
+            styles.button,
+            !inputValue
+              ? {
+                  opacity: 0.5,
+                }
+              : null,
+            pressed
+              ? {
+                  backgroundColor: 'grey',
+                }
+              : null,
+          ]}
+        >
+          <Text style={styles.buttonText}>Добавить значение</Text>
+        </Pressable>
+      </View>
     </Modal>
   );
 };

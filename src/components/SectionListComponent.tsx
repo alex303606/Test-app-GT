@@ -1,30 +1,31 @@
 import React, { useCallback } from 'react';
 import { SectionList, StyleSheet, Text, View } from 'react-native';
+import { Section } from './types.ts';
 
 const keyExtractor = (item: string) => item;
 
-const DATA = [
-  {
-    title: 'Main dishes',
-    data: ['Pizza', 'Burger', 'Risotto'],
-  },
-  {
-    title: 'Sides',
-    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
-  },
-  {
-    title: 'Drinks',
-    data: ['Water', 'Coke', 'Beer'],
-  },
-  {
-    title: 'Desserts',
-    data: ['Cheese Cake', 'Ice Cream'],
-  },
-];
+// const DATA = [
+//   {
+//     title: 'Main dishes',
+//     data: ['Pizza', 'Burger', 'Risotto'],
+//   },
+//   {
+//     title: 'Sides',
+//     data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+//   },
+//   {
+//     title: 'Drinks',
+//     data: ['Water', 'Coke', 'Beer'],
+//   },
+//   {
+//     title: 'Desserts',
+//     data: ['Cheese Cake', 'Ice Cream'],
+//   },
+// ];
 
-type Props = {};
+type Props = { sections: Section[] };
 
-export const SectionListComponent: React.FC<Props> = () => {
+export const SectionListComponent: React.FC<Props> = ({ sections }) => {
   const renderItem = useCallback(
     ({ item }: { item: string }) => (
       <View style={styles.itemWrapper}>
@@ -63,7 +64,7 @@ export const SectionListComponent: React.FC<Props> = () => {
       contentContainerStyle={styles.sectionList}
       showsVerticalScrollIndicator={false}
       scrollEnabled={true}
-      sections={[]}
+      sections={sections}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
       renderSectionHeader={renderSectionHeader}
