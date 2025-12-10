@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 18,
     color: 'white',
-    fontWeight: 600,
+    fontWeight: 'bold',
   },
   textContainer: {
     flex: 1,
@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#329763',
     height: 190,
-    borderBottomEndRadius: 25,
-    borderBottomStartRadius: 25,
+    borderBottomEndRadius: 12,
+    borderBottomStartRadius: 12,
     paddingHorizontal: 16,
     paddingBottom: 24,
   },
