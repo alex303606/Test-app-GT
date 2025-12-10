@@ -1,10 +1,16 @@
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
-import { Footer, Header, ModalScreen } from './components';
+import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
+import {
+  Footer,
+  Header,
+  ModalScreen,
+  SectionListComponent,
+} from './components';
 import React, { useCallback, useState } from 'react';
 
 export const AppContent: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  //const [list, setList] = useState<string[]>([]);
 
   const onToggleModalHandler = useCallback(() => {
     setModalVisible(!modalVisible);
@@ -17,9 +23,7 @@ export const AppContent: React.FC = () => {
       keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust as needed
     >
       <Header />
-      <View style={styles.content}>
-        {/*<Text style={styles.text}>{'Добавьте\nзначение'}</Text>*/}
-      </View>
+      <SectionListComponent />
       <Footer onPress={onToggleModalHandler} />
       <ModalScreen
         modalVisible={modalVisible}
@@ -35,15 +39,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAFAFA',
-  },
-  text: {
-    color: '#AEAEAE',
-    fontSize: 14,
-    fontWeight: '400',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
   },
 });
