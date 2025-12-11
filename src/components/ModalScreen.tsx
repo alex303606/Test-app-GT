@@ -1,5 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import {
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 type Props = {
   modalVisible: boolean;

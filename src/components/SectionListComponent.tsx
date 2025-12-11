@@ -1,27 +1,8 @@
 import React, { useCallback } from 'react';
 import { SectionList, StyleSheet, Text, View } from 'react-native';
-import { Section } from './types.ts';
+import { Section } from '../types';
 
-const keyExtractor = (item: string) => item;
-
-// const DATA = [
-//   {
-//     title: 'Main dishes',
-//     data: ['Pizza', 'Burger', 'Risotto'],
-//   },
-//   {
-//     title: 'Sides',
-//     data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
-//   },
-//   {
-//     title: 'Drinks',
-//     data: ['Water', 'Coke', 'Beer'],
-//   },
-//   {
-//     title: 'Desserts',
-//     data: ['Cheese Cake', 'Ice Cream'],
-//   },
-// ];
+const keyExtractor = (item: string) => `${item}${Math.random().toString()}`;
 
 type Props = { sections: Section[] };
 
