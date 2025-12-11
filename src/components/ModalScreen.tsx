@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import {
+  KeyboardAvoidingView,
   Modal,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -41,45 +43,53 @@ export const ModalScreen: React.FC<Props> = ({
       visible={modalVisible}
       onRequestClose={toggleModalHandler}
     >
-      <TouchableOpacity
-        style={styles.modalContainer}
-        activeOpacity={1}
-        onPress={toggleModalHandler}
-      />
-      <View style={styles.modalContent}>
-        <Text style={styles.addText}>Добавить значение</Text>
-        <TextInput
-          placeholder={'Например: Cat'}
-          placeholderTextColor={'rgba(41, 45, 58, 0.32)'}
-          style={styles.input}
-          value={inputValue}
-          onChangeText={setInputValue}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}
+      >
+        <TouchableOpacity
+          style={styles.modalContainer}
+          activeOpacity={1}
+          onPress={toggleModalHandler}
         />
-        <Pressable
-          disabled={!inputValue}
-          onPress={onPressAddValue}
-          style={({ pressed }) => [
-            styles.button,
-            !inputValue
-              ? {
-                  opacity: 0.5,
-                }
-              : null,
-            pressed
-              ? {
-                  backgroundColor: 'grey',
-                }
-              : null,
-          ]}
-        >
-          <Text style={styles.buttonText}>Добавить значение</Text>
-        </Pressable>
-      </View>
+        <View style={styles.modalContent}>
+          <Text style={styles.addText}>Добавить значение</Text>
+          <TextInput
+            placeholder={'Например: Cat'}
+            placeholderTextColor={'rgba(41, 45, 58, 0.32)'}
+            style={styles.input}
+            value={inputValue}
+            onChangeText={setInputValue}
+          />
+          <Pressable
+            disabled={!inputValue}
+            onPress={onPressAddValue}
+            style={({ pressed }) => [
+              styles.button,
+              !inputValue
+                ? {
+                    opacity: 0.5,
+                  }
+                : null,
+              pressed
+                ? {
+                    backgroundColor: 'grey',
+                  }
+                : null,
+            ]}
+          >
+            <Text style={styles.buttonText}>Добавить значение</Text>
+          </Pressable>
+        </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   input: {
     borderWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.12)',

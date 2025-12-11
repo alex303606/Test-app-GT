@@ -1,10 +1,5 @@
-import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
-import {
-  Footer,
-  Header,
-  ModalScreen,
-  SectionListComponent,
-} from './components';
+import { StyleSheet, View } from 'react-native';
+import { Footer, Header, ModalScreen, SectionListComponent, } from './components';
 import React, { useCallback, useMemo, useState } from 'react';
 import { groupAnagrams } from './utils';
 
@@ -34,11 +29,7 @@ export const AppContent: React.FC = () => {
   }, [words]);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust as needed
-    >
+    <View style={styles.container}>
       <Header />
       <SectionListComponent sections={sectionList} />
       <Footer onPress={onToggleModalHandler} />
@@ -49,7 +40,7 @@ export const AppContent: React.FC = () => {
         setInputValue={setInputValue}
         onPressAddValue={onSetSection}
       />
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
