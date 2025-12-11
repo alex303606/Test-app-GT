@@ -1,5 +1,10 @@
 import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
-import { Footer, Header, ModalScreen, SectionListComponent, } from './components';
+import {
+  Footer,
+  Header,
+  ModalScreen,
+  SectionListComponent,
+} from './components';
 import React, { useCallback, useMemo, useState } from 'react';
 import { groupAnagrams } from './utils';
 
