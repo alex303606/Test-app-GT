@@ -28,10 +28,12 @@ export const groupAnagrams = (words: string[]): Section[] => {
     }
   });
 
-  const result = singles.data.length > 0 ? [...groups, singles] : groups;
-
-  return result.map((section, index) => ({
+  const groupsWithTitle = groups.map((section, index) => ({
     ...section,
-    title: index === result.length - 1 ? 'Остальные' : `Значение ${index + 1}`,
+    title: `Значение ${index + 1}`,
   }));
+
+  return singles.data.length > 0
+    ? [...groupsWithTitle, singles]
+    : groupsWithTitle;
 };
