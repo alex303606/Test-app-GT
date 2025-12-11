@@ -17,10 +17,10 @@ export const groupAnagrams = (words: string[]): Section[] => {
     map.get(key)!.push(word);
   });
 
-  map.forEach((wordList, index) => {
+  map.forEach(wordList => {
     if (wordList.length > 1) {
       groups.push({
-        title: `Значение ${index}`,
+        title: '',
         data: wordList,
       });
     } else {
